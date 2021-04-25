@@ -31,5 +31,12 @@ namespace Generator.RestAdapter.Controllers.v1
             var result = _requestDeal.GetDeal(id);
             return Ok(result);
         }
+
+        [HttpPost]
+        public IActionResult Post(Deal deal)
+        {
+            _requestDeal.PostDeal(deal);
+            return Ok();
+        }
     }
 }

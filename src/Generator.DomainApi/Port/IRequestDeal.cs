@@ -6,5 +6,6 @@ namespace Generator.DomainApi.Port
     {
         List<T> GetDeals();
         T GetDeal(int id);
+        void PostDeal(T model);
     }
 }

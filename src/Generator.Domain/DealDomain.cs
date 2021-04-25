@@ -9,10 +9,10 @@ namespace Generator.Domain
     public class DealDomain<T> : IRequestDeal<T> where T : class
     {
         private readonly DbSet<T> table;
+        private readonly ApplicationDbContext _dbContext;
 
         public DealDomain(ApplicationDbContext dbContext)
         {
-            ApplicationDbContext _dbContext;
             _dbContext = dbContext;
             table = _dbContext.Set<T>();
         }
@@ -24,6 +24,12 @@ namespace Generator.Domain
         public List<T> GetDeals()
         {
             return table.ToList();
+        }
+
+        public void PostDeal(T model)
+        {
+            table.Add(model);
+            _dbContext.SaveChangesAsync();
         }
     }
 }
